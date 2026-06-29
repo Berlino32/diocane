@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Solution // Ring 0 Performance Suite</title>
+    <meta name="description" content="32 Solution builds undetected ring-0 and ring-3 tooling for serious operators. Private, external and public tiers.">
+    <meta name="keywords" content="32 Solution, kernel mode, usermode, ring 0, driver bypass, cheat game, high technology software">
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <div class="custom-cursor"></div>
+
+    <style>
+        /* Lightning Background Effect */
+        .lightning-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -5;
+        }
+        .lightning-flashscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.12);
+            opacity: 0;
+            z-index: 9998;
+            transition: opacity 0.1s;
+        }
+        .lightning-flashscreen.flash {
+            opacity: 1;
+            transition: opacity 0.05s;
+        }
+
+        /* Mix Linear Sections */
+        .undetected-banner {
+            padding: 4rem 2rem;
+            background: #020203;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        .undetected-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-display);
+        }
+        .undetected-sub {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        .defeated-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .defeated-badge {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 99px;
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .defeated-badge i { color: #22c55e; }
+        
+        .streamproof-section {
+            padding: 6rem 2rem;
+            background: #000000;
+            position: relative;
+            z-index: 10;
+        }
+        .sp-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .sp-left, .sp-right {
+            flex: 1;
+            min-width: 300px;
+        }
+        .sp-right {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+        .sp-checklist {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .sp-checklist li {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        .sp-checklist li i { color: var(--text-primary); }
+        .sp-preview {
+            aspect-ratio: 16/9;
+            background: #050506;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: var(--font-display);
+            border: 1px dashed var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="lightning-layer" class="lightning-layer"></div>
+    <div id="lightning-flash" class="lightning-flashscreen"></div>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-scanline"></div>
+
+    <header class="navbar-wrapper">
+        <div class="navbar-capsule">
+            <a href="#" class="logo-area">
+    <img src="logo.png" alt="32 Solution" class="nav-logo">
+</a>
+            <nav class="nav-menu" id="nav-links">
+                <a href="#hero" class="nav-link"><i class="fa-solid fa-house"></i> Base</a>
+                <a href="#features" class="nav-link"><i class="fa-solid fa-bolt"></i> Stack</a>
+                <a href="#tech" class="nav-link"><i class="fa-solid fa-microchip"></i> Ring 0/3</a>
+                <a href="#pricing" class="nav-link"><i class="fa-solid fa-tags"></i> Tiers</a>
+                <a href="#payments" class="nav-link"><i class="fa-solid fa-credit-card"></i> Checkout</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#" onclick="return false;" class="client-area-btn">
+                    <i class="fa-brands fa-discord"></i> ENTER DISCORD
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+ <section class="hero-section" id="hero">
+    <div class="hero-container">
+
+        <!-- LEFT CONTENT -->
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span> 32 BYPASS
+            </div>
+
+            <h1 class="hero-title">
+                BUILT IN <br>
+                <span class="gradient-text">RING ZERO.</span>
+            </h1>
+
+            <p class="hero-description">
+                Lab-grade tooling for operators who refuse to lose frames or get flagged.
+                Signed kernel drivers, sandboxed usermode loaders and stability-focused builds.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary">
+                    <i class="fa-solid fa-play"></i> Get Access
+                </a>
+                <a href="#tech" class="btn btn-secondary">
+                    <i class="fas fa-cog"></i> The Stack
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT DASHBOARD (CENTRATO PERFETTO) -->
+       <div class="hero-dashboard-wrapper">
+    <div class="simple-brand-box">
+   <img src="logo.png" alt="32 Solution" class="hero-brand-img">
+    </div>
+</div>
+</section>
+
+         <section class="arsenal-section" id="arsenal">
+
+    <div class="section-header">
+        <h2 class="section-title">System Modules // <span class="gradient-text">Control Panel</span></h2>
+        <p class="section-subtitle">
+            Modular architecture with fully independent components and real-time configuration.
+        </p>
+    </div>
+
+    <div class="arsenal-grid">
+
+        <!-- CARD 1 -->
+        <div class="arsenal-card">
+            <div class="arsenal-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h3>Module Core</h3>
+            <p>Central processing unit responsible for runtime execution and orchestration.</p>
+
+            <div class="tag-row">
+                <span class="tag">Realtime</span>
+                <span class="tag">Low latency</span>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="arsenal-card">
+            <div class="arsenal-icon">
+                <i class="fa-solid fa-shield"></i>
+            </div>
+            <h3>Security Layer</h3>
+            <p>Handles encryption, integrity checks and secure communication channels.</p>
+
+            <div class="tag-row">
+                <span class="tag">Encrypted</span>
+                <span class="tag">Stable</span>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="arsenal-card">
+            <div class="arsenal-icon">
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+            <h3>Configuration Engine</h3>
+            <p>Dynamic settings system with live updates and per-session profiles.</p>
+
+            <div class="tag-row">
+                <span class="tag">Customizable</span>
+                <span class="tag">Persistent</span>
+            </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="arsenal-card">
+            <div class="arsenal-icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>Performance Layer</h3>
+            <p>Optimized execution pipeline designed for minimal overhead and stability.</p>
+
+            <div class="tag-row">
+                <span class="tag">Optimized</span>
+                <span class="tag">Lightweight</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+        <section class="pricing-section" id="pricing">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Plan // <span class="gradient-text">Pricing</span></h2>
+                <p class="section-subtitle">Choose the ideal license for your technological needs.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card-premium">
+                    <div class="price-card-header">
+                        <h3>Public Licenses</h3>
+                        <p>For individual users and standard needs</p>
+                    </div>
+                    <div class="price-plans-list">
+                        <div class="plan-row"><span class="plan-duration-lbl">1 Month</span><div class="plan-price-col"><span class="price-new text-white">€31.99</span></div></div>
+                        <div class="plan-row"><span class="plan-duration-lbl">3 Months</span><div class="plan-price-col"><span class="price-new text-white">€59.99</span></div></div>
+                        <div class="plan-row"><span class="plan-duration-lbl">Lifetime</span><div class="plan-price-col"><span class="price-new text-white">€109.99</span></div></div>
+                    </div>
+                    <ul class="price-features-list">
+                        <li><i class="fa-solid fa-check text-white"></i> Full Access to the Public Build</li>
+                        <li><i class="fa-solid fa-check text-white"></i> Automatic updates included</li>
+                    </ul>
+                    <div class="price-card-footer">
+                        <a href="#" onclick="return false;" class="btn btn-purchase">Purchase Now</a>
+                    </div>
+                </div>
+
+                <div class="price-card-premium featured-price-card">
+                    <div class="best-value-ribbon">BEST VALUE</div>
+                    <div class="price-card-header">
+                        <h3>Private Licenses</h3>
+                        <p>For premium users and private slots</p>
+                    </div>
+                    <div class="price-plans-list">
+                        <div class="plan-row"><span class="plan-duration-lbl">1 Month</span><div class="plan-price-col"><span class="price-new text-white">€49.99</span></div></div>
+                        <div class="plan-row"><span class="plan-duration-lbl">3 Months</span><div class="plan-price-col"><span class="price-new text-white">€99.99</span></div></div>
+                        <div class="plan-row"><span class="plan-duration-lbl">Lifetime</span><div class="plan-price-col"><span class="price-new text-white">€199.99</span></div></div>
+                    </div>
+                    <ul class="price-features-list">
+                        <li><i class="fa-solid fa-check text-white"></i> Unique compilation hash per user</li>
+                        <li><i class="fa-solid fa-check text-white"></i> Private Exclusive Build</li>
+                    </ul>
+                    <div class="price-card-footer">
+                        <a href="#" onclick="return false;" class="btn btn-purchase glow-white">Purchase Now</a>
+                    </div>
+                </div>
+        </section>
+
+       <section class="payments-section" id="payments">
+    <div class="section-header">
+        <h2 class="section-title">Methods of // <span class="gradient-text">Payment</span></h2>
+        <p class="section-subtitle">Fast and secure checkout via PayPal.</p>
+    </div>
+
+    <div class="payments-grid" style="grid-template-columns: 1fr; max-width: 420px;">
+
+        <div class="pay-method-card border-glow-white" onclick="return false;">
+
+            <div class="pay-badge">
+                <i class="fa-solid fa-bolt"></i> INSTANT PAYMENT
+            </div>
+
+            <div class="pay-icon">
+                <i class="fa-brands fa-paypal"></i>
+            </div>
+
+            <h4>PayPal</h4>
+
+            <p>
+                Complete your purchase securely with PayPal. Instant license delivery after payment.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand-center">
+                <div class="footer-logo-row">
+                    <img src="logo.png" alt="32 Logo" class="footer-logo">
+                    <img src="logo.png" alt="32 Solution" class="footer-logo-text">
+                </div>
+                <p class="footer-motto">Detect beyond limits.</p>
+            </div>
+            <hr class="footer-hr">
+            <div class="footer-bottom-row">
+                <div class="designer-credit-box">
+                    <div class="credit-text-col">
+                        <span class="credit-title">Crafted in-house by the 32 Solution team</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright-text">
+                © 2026 32 Solution — all rings reserved.
+                <p class="footer-legal-notice">This software is provided for educational purposes, debugging, and research on computer security.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    </body>
+</html>
